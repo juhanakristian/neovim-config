@@ -124,6 +124,13 @@ end
 local default_opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<C-l>", ":lua toggle_stuff()<CR>", default_opts)
 
+require('telescope').setup{
+  defaults = {
+    file_ignore_patterns = {
+      "node_modules"
+    }
+  }
+}
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
@@ -178,7 +185,7 @@ end
 vim.cmd("autocmd! TermOpen term:// lua set_terminal_keymaps()")
 
 require("mason-lspconfig").setup({
-	ensure_installed = { "lua_ls", "rust_analyzer", "pyright" },
+	ensure_installed = { "lua_ls", "rust_analyzer", "pyright", "tsserver" },
 })
 
 local lsp = require("lsp-zero").preset({})
